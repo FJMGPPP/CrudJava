@@ -11,13 +11,29 @@ import java.io.InputStreamReader;
 
 public class Crud implements Sistema.EventsSystem
 {
+    /**
+     * Sistema al que pertenece
+     */
     Sistema anfitrion;
+    /**
+     * archivo con el que trabaja
+     */
     Archivo myfile;
+
+    /**
+     * Inicia el crud
+     * @param anfitrion sistema que administra
+     */
     public Crud(Sistema anfitrion)
     {
         this.anfitrion = anfitrion;
 
     }
+
+    /**
+     * El archivo es borrado y se escribe los datos de memoria
+     * @throws IOException si el archivo diera algun error
+     */
     public void ActualizarFichero() throws IOException {
         if(anfitrion.modoGurdado)
         {
@@ -25,10 +41,19 @@ public class Crud implements Sistema.EventsSystem
             myfile.EscribirTodo(anfitrion.usuarios);
         }
     }
+
+    /**
+     * Agrega usuarios a su sistema
+     * @throws IOException puede saltar bien por un problema con el archivo o por la entrada de datos
+     */
     public  void AgregarUsuario() throws IOException {
     anfitrion.usuarios.add(new Usuario());
         ActualizarFichero();
     }
+    /**
+     * Elimina usuarios a su sistema
+     * @throws IOException puede saltar bien por un problema con el archivo o por la entrada de datos
+     */
     public  void EliminarUsuario() throws IOException {
         BufferedReader lector = new BufferedReader( new InputStreamReader(System.in));
         System.out.println("Porfavor ingrese un uid:");
@@ -73,6 +98,10 @@ public class Crud implements Sistema.EventsSystem
         }
         ActualizarFichero();
     }
+    /**
+     * Modifca usuarios a su sistema
+     * @throws IOException puede saltar bien por un problema con el archivo o por la entrada de datos
+     */
     public  void ModificarUsuario() throws IOException {
         BufferedReader lector = new BufferedReader( new InputStreamReader(System.in));
         System.out.println("Porfavor ingrese un uid:");
@@ -110,6 +139,10 @@ public class Crud implements Sistema.EventsSystem
         }
         ActualizarFichero();
     }
+    /**
+     * Muestra los usuarios a su sistema
+     * @throws IOException puede saltar bien por un problema con el archivo o por la entrada de datos
+     */
     public  void LeerUsuarios() throws IOException {
         for ( Usuario usuario : anfitrion.usuarios)
         {
@@ -118,6 +151,10 @@ public class Crud implements Sistema.EventsSystem
         ActualizarFichero();
     }
 
+    /**
+     * todo crud esta suscrito al evento de su sistema
+     * teniendo en cuenta si existe o no el archivo lleva acabo un procedimiento
+     */
     @Override
     public void OnfileMode()
     {

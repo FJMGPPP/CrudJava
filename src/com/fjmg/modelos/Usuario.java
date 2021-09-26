@@ -5,6 +5,10 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Random;
 
+/**
+ * Usado para modelar los datos del usuario.
+ * Implementa la interfaz serializable para poder usarse con la serializacion binaria de java
+ */
 public class Usuario implements Serializable {
     public String Uid;
     public String correo;

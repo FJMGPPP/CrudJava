@@ -21,14 +21,27 @@ public class Sistema
      * false modo array con su Array de Usuarios codificado
      */
     public boolean modoGurdado;
+    /**
+     * La lista de los usuarios cargados en memoria en este momento
+     */
     public  ArrayList<Usuario> usuarios;
+    /**
+     * Crud que usa el sistema para tratar con los usuarios
+     */
     public Crud mycrud;
+
+    /**
+     * El Sistema carga en modo array ,crea un nuevo crud y inicia su lista de usuarios.
+     * Ademas dibuja el menu principal del sistema
+     * @throws IOException
+     */
     public Sistema() throws IOException {
         modoGurdado = false;
         usuarios =  new ArrayList<>(0);
         mycrud = new Crud(this);
         DibujarMenu();
     }
+    //Menu Principal del sistema
     public void DibujarMenu() throws IOException {
         boolean bucle = true;
         String Modo = "array";
@@ -81,6 +94,11 @@ public class Sistema
 
         }
     }
+
+    /**
+     * EventsSystem es una interfaz creada para que la clase crud
+     * Escuche el sistema y avisarle en caso e que se cargue el modo archivo
+     */
     public interface EventsSystem extends EventListener
     {
       void OnfileMode();
